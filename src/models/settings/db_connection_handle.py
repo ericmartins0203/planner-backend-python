@@ -13,4 +13,4 @@ class DbConnectionHandler:
   def get_connection(self) -> Connection:
     return self.__conn
   
-db_coonection_handler = DbConnectionHandler()
+db_connection_handler = DbConnectionHandler()
