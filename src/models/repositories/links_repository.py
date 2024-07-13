@@ -23,12 +23,10 @@ class LinksRepository:
     self.__conn.commit()
 
   def find_links_from_trip(self, trip_id: str) -> List[Tuple]:
-    cursor = self.__conn .cursor()
-    cursor.execute(
-      '''
-        SELECT * FROM links
-        WHERE trip_id = ?
-      ''', (trip_id,)
-    )
-    return cursor.fetchall()
+        cursor = self.__conn.cursor()
+        cursor.execute(
+            '''SELECT * FROM links WHERE trip_id = ?''', (trip_id,)
+        )
+        links = cursor.fetchall()
+        return links
   
