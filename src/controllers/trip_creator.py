@@ -3,6 +3,7 @@ import uuid
 from typing import Dict
 from src.models.repositories.trips_repository import TripsRepository
 from src.models.repositories.emails_to_invite_repository import EmailsToInviteRepository
+from src.drivers.email_sender import send_email
 
 class TripsCreator:
   def __init__(self, trips_repository: TripsRepository, emails_repository: EmailsToInviteRepository) -> None:
@@ -29,6 +30,11 @@ class TripsCreator:
             "email": email
           }
           self.__emails_repository.registry_email(emails_trips_infos)
+
+      send_email(
+        [body.get("owner_email")], 
+        f"http://localhost:3333/trips/{trip_id}/confirm"
+      )
 
       return { 
         "body": {'id': trip_id }, 
